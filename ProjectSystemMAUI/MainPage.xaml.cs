@@ -1,12 +1,16 @@
-﻿namespace ProjectSystemMAUI
+﻿using System.ComponentModel;
+
+namespace ProjectSystemMAUI
 {
     public partial class MainPage : ContentPage
     {
         public List<ProjectModel> Projects { get; set; }
 
-        public Task<List<TaskModel>> Tasks { get; set; }
+        public List<TaskModel> Tasks { get; set; }
 
+        public TaskModel SelectedTask { get; set; }
 
+        private DB dB = new DB();
 
         public MainPage()
         {
@@ -15,17 +19,27 @@
             UpdateList();
             BindingContext = this;
         }
+       
 
-        private void UpdateList()
-        {
-            DB dB = new DB();
-            Tasks = dB.GetTasks();
+        private async void UpdateList()
+        {   
+            Tasks = await dB.GetTasks();
+            OnPropertyChanged(nameof(Tasks));
         }
 
-        private void NewTask(object sender, EventArgs e)
+        private async void NewTaskClick(object sender, EventArgs e)
         {
-            NewTaskWindow newTaskWindow = new NewTaskWindow();
-            
+            await Navigation.PushAsync(new NewTaskWindow());
+        }
+
+        private void UpdateTaskClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void DeleteTaskClick(object sender, EventArgs e)
+        {
+            await dB.Delete(SelectedTask);
         }
     }
 

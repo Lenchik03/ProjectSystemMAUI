@@ -15,6 +15,7 @@ namespace ProjectSystemMAUI
         private ProjectModel Project { get; set; }
 
         private int lastid =0;
+        private int plastid = 0;
         public DB()
         {
             Tasks.Add(new TaskModel
@@ -22,6 +23,12 @@ namespace ProjectSystemMAUI
                 Id = lastid++,
                 Title = "апавпавп",
                 Description = "dsgfdsgrsg"
+            });
+
+           Projects.Add(new ProjectModel
+            {
+                Id = plastid++,
+                Title = "апавпавп"   
             });
         }
         public async Task<List<TaskModel>> GetTasks()

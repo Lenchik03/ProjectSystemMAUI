@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectSystemMAUI.NewTaskWindow"
              Title="NewTaskWindow">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <Label Text="Название"/>
+        <Entry Text="{Binding Task.Title}"/>
+        <Label Text="Описание"/>
+        <Entry Text="{Binding Task.Description}"/>
+        <Label Text="Проект"/>
+        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project.Title}"/>
+        <Button Text="Сохранить" Clicked="SaveClick"/> 
+    </StackLayout>
 </ContentPage>

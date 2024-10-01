@@ -4,12 +4,8 @@
              x:Class="ProjectSystemMAUI.MainPage">
 
     <StackLayout>
-        <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Text="Новая задача" Clicked="NewTask"/>
-            </MenuFlyout>
-        </FlyoutBase.ContextFlyout>
-        <ListView ItemsSource="{Binding Tasks}">
+        
+        <ListView ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -22,6 +18,11 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <StackLayout>
+            <Button Text="Добавить" Clicked="NewTaskClick"/>
+            <Button Text="Изменить" Clicked="UpdateTaskClick"/>
+            <Button Text="Удалить" Clicked="DeleteTaskClick"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
