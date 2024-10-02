@@ -11,5 +11,5 @@
         <Label Text="Проект"/>
         <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}" ItemDisplayBinding="Title"/>
         <Button Text="Сохранить" Clicked="SaveClick"/> 
-    </StackLayout>
+    </StackLayout> 
 </ContentPage>
