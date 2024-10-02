@@ -6,7 +6,7 @@ namespace ProjectSystemMAUI
     {
         public List<ProjectModel> Projects { get; set; }
 
-        public List<TaskModel> Tasks { get; set; }
+        public List<TaskModel> Tasks { get; set; } = new List<TaskModel>();
 
         public TaskModel SelectedTask { get; set; }
 

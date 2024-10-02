@@ -10,7 +10,7 @@
         <Stepper Increment="1" Minimum="1" Maximum="360" ValueChanged="OnStepperValueChanged"/>
         <Label x:Name="header"  FontSize="18" Margin="5" />
         <Label Text="Проект"/>
-        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project.Title}"/>
+        
         <Button Text="Сохранить" Clicked="SaveClick"/>
     </StackLayout>
 </ContentPage>

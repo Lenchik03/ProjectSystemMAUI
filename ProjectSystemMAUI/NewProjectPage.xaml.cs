@@ -2,7 +2,7 @@ namespace ProjectSystemMAUI;
 
 public partial class NewProjectPage : ContentPage
 {
-    public ProjectModel Project { get; set; }
+    public ProjectModel Project { get; set; } = new();
 
     private DB dB = new DB();
     public NewProjectPage(ProjectModel project)
@@ -15,5 +15,10 @@ public partial class NewProjectPage : ContentPage
     private void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
     {
         header.Text = $"Выбрано: {e.NewValue:F1}";
+    }
+
+    private void SaveClick(object sender, EventArgs e)
+    {
+
     }
 }

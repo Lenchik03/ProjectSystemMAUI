@@ -2,11 +2,11 @@ namespace ProjectSystemMAUI;
 
 public partial class NewTaskWindow : ContentPage
 {
-	public TaskModel Task {  get; set; }
+	public TaskModel Task {  get; set; } = new TaskModel();
 
     public List<ProjectModel> Projects { get; set; }
 
-    public ProjectModel Project { get; set; }
+    public ProjectModel Project { get; set; } 
 
     private DB dB = new DB();
 

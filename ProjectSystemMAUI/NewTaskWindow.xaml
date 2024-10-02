@@ -9,7 +9,7 @@
         <Label Text="Описание"/>
         <Entry Text="{Binding Task.Description}"/>
         <Label Text="Проект"/>
-        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project.Title}"/>
+        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}" ItemDisplayBinding="Title"/>
         <Button Text="Сохранить" Clicked="SaveClick"/> 
     </StackLayout>
 </ContentPage>
