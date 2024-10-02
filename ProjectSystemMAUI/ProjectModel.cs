@@ -10,5 +10,8 @@ namespace ProjectSystemMAUI
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public double Deadlines { get; set; }
+
+        public List<TaskModel> Tasks { get; set; }
     }
 }

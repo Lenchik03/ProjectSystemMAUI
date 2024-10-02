@@ -1,28 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="http://schemas.syncfusion.com/maui"
              x:Class="ProjectSystemMAUI.MainPage">
 
-    <StackLayout>
-        
-        <ListView ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Title}"/>
-                            <Label Text="{Binding Description}"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
 
-        <StackLayout>
-            <Button Text="Добавить" Clicked="NewTaskClick"/>
-            <Button Text="Изменить" Clicked="UpdateTaskClick"/>
-            <Button Text="Удалить" Clicked="DeleteTaskClick"/>
+        <ContentPage.MenuBarItems>
+        <!--<MenuBarItem Text="Задачи">
+            <MenuFlyoutItem Text="Все задачи"
+                    Clicked= "Tasks" />
+    </MenuBarItem>-->
+        <MenuBarItem Text="Проекты">
+            <MenuFlyoutItem Text="Все проекты"
+                Clicked= "ProjectsClick" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Title}"/>
+                                <Label Text="{Binding Description}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <HorizontalStackLayout>
+                <Button Text="Добавить" Clicked="NewTaskClick"/>
+                <Button Text="Изменить" Clicked="UpdateTaskClick"/>
+                <Button Text="Удалить" Clicked="DeleteTaskClick"/>
+            </HorizontalStackLayout>
         </StackLayout>
-    </StackLayout>
+
+    
 
 </ContentPage>

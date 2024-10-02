@@ -29,17 +29,22 @@ namespace ProjectSystemMAUI
 
         private async void NewTaskClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewTaskWindow());
+            await Navigation.PushAsync(new NewTaskWindow(SelectedTask));
         }
 
-        private void UpdateTaskClick(object sender, EventArgs e)
+        private async void UpdateTaskClick(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new NewTaskWindow(SelectedTask));
         }
 
         private async void DeleteTaskClick(object sender, EventArgs e)
         {
             await dB.Delete(SelectedTask);
+        }
+
+        private async void ProjectsClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProjectPage());
         }
     }
 

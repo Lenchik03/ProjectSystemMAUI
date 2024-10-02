@@ -10,11 +10,12 @@ public partial class NewTaskWindow : ContentPage
 
     private DB dB = new DB();
 
-    public NewTaskWindow()
+    public NewTaskWindow(TaskModel taskModel)
 	{
 		InitializeComponent();
         UpdateList();
         BindingContext = this;
+        Task = taskModel;
     }
 
     private async void UpdateList()

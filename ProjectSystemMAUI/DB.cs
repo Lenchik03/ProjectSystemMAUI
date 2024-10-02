@@ -60,10 +60,12 @@ namespace ProjectSystemMAUI
             int count = Tasks.Count;
             task.Id = count + 1;
             Tasks.Add(task);
+            task.Project.Tasks.Add(task);
         }
 
-        public async Task Update(TaskModel task1)
+        public async Task Update(/*int id*/ TaskModel task1)
         {
+            //var task1 = TaskById(id);
             var task = Tasks.FirstOrDefault(s => s.Id == task1.Id);
             task.Title = task1.Title;
             task.Description = task1.Description;
@@ -76,6 +78,7 @@ namespace ProjectSystemMAUI
         {
             await Task.Delay(1000);
             Tasks.Remove(task);
+            task.Project.Tasks.Remove(task);
         }
 
 
@@ -99,6 +102,7 @@ namespace ProjectSystemMAUI
             {
                 Id = project.Id,
                 Title = project.Title,
+                Deadlines = project.Deadlines
             };
             await Task.Delay(1000);
             return project;
@@ -116,12 +120,14 @@ namespace ProjectSystemMAUI
         {
             var project = Projects.FirstOrDefault(s => s.Id == project1.Id);
             project.Title = project1.Title;
+            project.Deadlines = project1.Deadlines;
             await Task.Delay(1000);
         }
 
         public async Task DeleteProject(ProjectModel project)
         {
             await Task.Delay(1000);
+            
             Projects.Remove(project);
         }
     }
