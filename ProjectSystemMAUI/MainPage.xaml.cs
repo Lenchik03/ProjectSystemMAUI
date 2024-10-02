@@ -27,19 +27,25 @@ namespace ProjectSystemMAUI
             OnPropertyChanged(nameof(Tasks));
         }
 
+        protected override void OnAppearing()
+        {
+            UpdateList();
+        }
+
         private async void NewTaskClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewTaskWindow(SelectedTask));
+            await Navigation.PushAsync(new NewTaskWindow(new TaskModel(), dB));
         }
 
         private async void UpdateTaskClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewTaskWindow(SelectedTask));
+            await Navigation.PushAsync(new NewTaskWindow(SelectedTask, dB));
         }
 
         private async void DeleteTaskClick(object sender, EventArgs e)
         {
-            await dB.Delete(SelectedTask);
+            await dB.Delete(SelectedTask.Id);
+            UpdateList();
         }
 
         private async void ProjectsClick(object sender, EventArgs e)

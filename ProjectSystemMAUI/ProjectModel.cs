@@ -12,6 +12,6 @@ namespace ProjectSystemMAUI
         public string Title { get; set; }
         public double Deadlines { get; set; }
 
-        public List<TaskModel> Tasks { get; set; }
+        public List<TaskModel> Tasks { get; set; } = new List<TaskModel>();
     }
 }

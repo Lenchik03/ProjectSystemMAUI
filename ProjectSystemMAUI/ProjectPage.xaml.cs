@@ -7,17 +7,21 @@ public partial class ProjectPage : ContentPage
     public List<ProjectModel> Projects { get; set; }
 	public ProjectModel SelectedProject { get; set; }
 
-	private DB dB = new DB(); 
+    public List<TaskModel> Tasks { get; set; }
+
+    private DB dB = new DB(); 
     public ProjectPage()
 	{
 		InitializeComponent();
         UpdateList();
         BindingContext = this;
+
     }
 
     private async void UpdateList()
     {
         Projects = await dB.GetProjects();
+        Tasks = SelectedProject.Tasks;
         OnPropertyChanged(nameof(Projects));
     }
 
@@ -35,7 +39,7 @@ public partial class ProjectPage : ContentPage
     {
         if (SelectedProject.Tasks.Count > 0)
         {
-           // Task DisplayAlert(string "Ошибка", string "Перед тем как удалить проект - удалите все задачи, входящие в этот проект", string "Отмена");
+            await DisplayAlert("Ошибка", "Перед тем как удалить проект - удалите все задачи, входящие в этот проект", "Отмена");
         }
         else
         {

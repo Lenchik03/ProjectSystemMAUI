@@ -5,11 +5,11 @@
              Title="NewTaskWindow">
     <StackLayout>
         <Label Text="Название"/>
-        <Entry Text="{Binding Task.Title}"/>
+        <Entry Text="{Binding TaskM.Title}"/>
         <Label Text="Описание"/>
-        <Entry Text="{Binding Task.Description}"/>
+        <Entry Text="{Binding TaskM.Description}"/>
         <Label Text="Проект"/>
-        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}" ItemDisplayBinding="Title"/>
+        <Picker ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}" ItemDisplayBinding="{Binding Title}" />
         <Button Text="Сохранить" Clicked="SaveClick"/> 
     </StackLayout> 
 </ContentPage>

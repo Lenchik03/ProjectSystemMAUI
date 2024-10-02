@@ -14,21 +14,22 @@ namespace ProjectSystemMAUI
         private List<ProjectModel> Projects { get; set; } = new List<ProjectModel>();
         private ProjectModel Project { get; set; }
 
-        private int lastid =0;
-        private int plastid = 0;
+        private int lastid = 1;
+        private int plastid = 1;
         public DB()
         {
             Tasks.Add(new TaskModel
             {
-                Id = lastid++,
+                Id = 1,
                 Title = "апавпавп",
                 Description = "dsgfdsgrsg"
             });
 
-           Projects.Add(new ProjectModel
+            Projects.Add(new ProjectModel
             {
-                Id = plastid++,
-                Title = "апавпавп"   
+                Id = 1,
+                Title = "апавпавп",
+                Deadlines = 5
             });
         }
         public async Task<List<TaskModel>> GetTasks()
@@ -57,13 +58,19 @@ namespace ProjectSystemMAUI
         public async Task NewTask(TaskModel task)
         {
             await Task.Delay(1000);
-            int count = Tasks.Count;
-            task.Id = count + 1;
-            Tasks.Add(task);
-            task.Project.Tasks.Add(task);
+            TaskModel newTask = new TaskModel()
+            {
+                Id = ++lastid,
+                Title = task.Title,
+                Description = task.Description,
+                ProjectId = task.ProjectId,
+                Project = task.Project
+            }; 
+            Tasks.Add(newTask);
+            newTask.Project.Tasks.Add(newTask);
         }
 
-        public async Task Update(/*int id*/ TaskModel task1)
+        public async Task Update( TaskModel task1)
         {
             //var task1 = TaskById(id);
             var task = Tasks.FirstOrDefault(s => s.Id == task1.Id);
@@ -74,8 +81,9 @@ namespace ProjectSystemMAUI
             await Task.Delay(1000);
         }
 
-        public async Task Delete(TaskModel task)
+        public async Task Delete(int id)
         {
+            var task = Tasks.FirstOrDefault(s => s.Id == id);
             await Task.Delay(1000);
             Tasks.Remove(task);
             task.Project.Tasks.Remove(task);

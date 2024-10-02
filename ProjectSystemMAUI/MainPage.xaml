@@ -30,7 +30,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <HorizontalStackLayout>
+            <HorizontalStackLayout Margin="10">
                 <Button Text="Добавить" Clicked="NewTaskClick"/>
                 <Button Text="Изменить" Clicked="UpdateTaskClick"/>
                 <Button Text="Удалить" Clicked="DeleteTaskClick"/>
