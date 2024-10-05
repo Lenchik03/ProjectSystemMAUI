@@ -4,15 +4,16 @@ namespace ProjectSystemMAUI;
 
 public partial class ProjectPage : ContentPage
 {
-    public List<ProjectModel> Projects { get; set; }
-	public ProjectModel SelectedProject { get; set; }
+    public List<ProjectModel> Projects { get; set; } = new List<ProjectModel>();
+    public ProjectModel SelectedProject { get; set; }
 
     public List<TaskModel> Tasks { get; set; }
 
-    private DB dB = new DB(); 
-    public ProjectPage()
+    private DB dB;
+    public ProjectPage(DB dB)
 	{
 		InitializeComponent();
+        this.dB = dB;
         UpdateList();
         BindingContext = this;
 
@@ -21,18 +22,29 @@ public partial class ProjectPage : ContentPage
     private async void UpdateList()
     {
         Projects = await dB.GetProjects();
-        Tasks = SelectedProject.Tasks;
+        
         OnPropertyChanged(nameof(Projects));
+        
+        //if(SelectedProject != null)
+        //{
+        //    Tasks = SelectedProject.Tasks;
+        //    OnPropertyChanged(nameof(Tasks));
+        //}
+    }
+
+    protected override void OnAppearing()
+    {
+        UpdateList();
     }
 
     private async void NewProjectClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NewProjectPage(SelectedProject));
+        await Navigation.PushAsync(new NewProjectPage(new ProjectModel(), dB));
     }
 
     private async void UpdateProjectClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NewProjectPage(SelectedProject));
+        await Navigation.PushAsync(new NewProjectPage(SelectedProject, dB));
     }
 
     private async void DeleteProjectClick(object sender, EventArgs e)
@@ -43,7 +55,8 @@ public partial class ProjectPage : ContentPage
         }
         else
         {
-            await dB.DeleteProject(SelectedProject);
+            await dB.DeleteProject(SelectedProject.Id);
+            UpdateList();
         }
     }
 

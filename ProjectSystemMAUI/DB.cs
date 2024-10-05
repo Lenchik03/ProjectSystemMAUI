@@ -29,7 +29,8 @@ namespace ProjectSystemMAUI
             {
                 Id = 1,
                 Title = "апавпавп",
-                Deadlines = 5
+                Deadlines = 5,
+                Tasks = Tasks
             });
         }
         public async Task<List<TaskModel>> GetTasks()
@@ -98,7 +99,7 @@ namespace ProjectSystemMAUI
         public async Task<List<ProjectModel>> GetProjects()
         {
             List<ProjectModel> projectModels = new List<ProjectModel>(Projects);
-            await Task.Delay(1000);
+            await Task.Delay(100);
             return projectModels;
         }
 
@@ -110,7 +111,8 @@ namespace ProjectSystemMAUI
             {
                 Id = project.Id,
                 Title = project.Title,
-                Deadlines = project.Deadlines
+                Deadlines = project.Deadlines,
+                Tasks = project.Tasks
             };
             await Task.Delay(1000);
             return project;
@@ -119,9 +121,14 @@ namespace ProjectSystemMAUI
         public async Task NewProject(ProjectModel project)
         {
             await Task.Delay(1000);
-            int count = Projects.Count;
-            project.Id = count + 1;
-            Projects.Add(project);
+            ProjectModel newProject = new ProjectModel()
+            {
+                Id = ++plastid,
+                Title = project.Title,
+                Deadlines = project.Deadlines,
+                Tasks = project.Tasks
+            };
+            Projects.Add(newProject);
         }
 
         public async Task UpdateProject(ProjectModel project1)
@@ -129,13 +136,15 @@ namespace ProjectSystemMAUI
             var project = Projects.FirstOrDefault(s => s.Id == project1.Id);
             project.Title = project1.Title;
             project.Deadlines = project1.Deadlines;
+            project.Tasks = project1.Tasks;
             await Task.Delay(1000);
         }
 
-        public async Task DeleteProject(ProjectModel project)
+        public async Task DeleteProject(int id)
         {
+            var project = Projects.FirstOrDefault(s => s.Id == id);
             await Task.Delay(1000);
-            
+
             Projects.Remove(project);
         }
     }

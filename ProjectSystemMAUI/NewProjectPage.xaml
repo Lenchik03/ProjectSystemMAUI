@@ -7,7 +7,7 @@
         <Label Text="Название"/>
         <Entry Text="{Binding Project.Title}"/>
         <Label Text="Сроки выполнения в днях"/>
-        <Stepper Increment="1" Minimum="1" Maximum="360" ValueChanged="OnStepperValueChanged"/>
+        <Slider Minimum="1" Maximum="360" ValueChanged="OnStepperValueChanged" BindingContext="{Binding Project.Deadlines}"/>
         <Label x:Name="header"  FontSize="18" Margin="5" />
         <Label Text="Проект"/>
         
