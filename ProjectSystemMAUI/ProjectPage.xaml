@@ -17,25 +17,28 @@
         <ListView ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Title}"/>
-                            <Label Text="{Binding Deadlines}"/>
-                        </StackLayout>
-                        <!--<Label Text="Задачи"/>
-                        <CarouselView ItemsSource="{Binding Tasks}" >
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout>
-                                            <Label Text="{Binding Title}"/>
-                                            <Label Text="{Binding Description}"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>-->
+                            <StackLayout>
+                                <Label Text="{Binding Title}"/>
+                                <Label Text="{Binding Deadlines}"/>
+                            </StackLayout>
+                            <!--<Label Text="Задачи"/>
+    <CarouselView ItemsSource="{Binding Tasks}" >
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Title}"/>
+                        <Label Text="{Binding Description}"/>
                     </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>-->
+                        </StackLayout>
+                    </ViewCell>
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

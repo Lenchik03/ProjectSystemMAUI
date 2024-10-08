@@ -29,8 +29,7 @@ namespace ProjectSystemMAUI
             {
                 Id = 1,
                 Title = "апавпавп",
-                Deadlines = 5,
-                Tasks = Tasks
+                Deadlines = 5
             });
         }
         public async Task<List<TaskModel>> GetTasks()
