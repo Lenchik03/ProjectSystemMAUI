@@ -32,6 +32,8 @@ namespace ProjectSystemMAUI
                 Deadlines = 5
             });
         }
+
+        // получение списка задач
         public async Task<List<TaskModel>> GetTasks()
         {
             List<TaskModel> taskModels = new List<TaskModel>(Tasks);
@@ -39,7 +41,7 @@ namespace ProjectSystemMAUI
             return taskModels;
         }
 
-       
+       // получение задачи по её ID
         public async Task<TaskModel> TaskById(int id)
         {
             var task = Tasks.FirstOrDefault(s  => s.Id == id);
@@ -55,6 +57,7 @@ namespace ProjectSystemMAUI
             return task;
         }
 
+        // добавление новой задачи в список задач
         public async Task NewTask(TaskModel task)
         {
             await Task.Delay(1000);
@@ -70,7 +73,8 @@ namespace ProjectSystemMAUI
             newTask.Project.Tasks.Add(newTask);
         }
 
-        public async Task Update( TaskModel task1)
+        // изменение данных задачи
+        public async Task Update(TaskModel task1)
         {
             //var task1 = TaskById(id);
             var task = Tasks.FirstOrDefault(s => s.Id == task1.Id);
@@ -81,6 +85,7 @@ namespace ProjectSystemMAUI
             await Task.Delay(1000);
         }
 
+        // удаление задачи
         public async Task Delete(int id)
         {
             var task = Tasks.FirstOrDefault(s => s.Id == id);
